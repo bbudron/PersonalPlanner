@@ -12,14 +12,6 @@ import 'react-dates/lib/css/_datepicker.css';
 
 const store = configureStore();
 
-// store.dispatch(addTask({ description: 'Water bill', amount: 4500 }));
-// store.dispatch(addTask({ description: 'Gas bill', createdAt: 1000 }));
-// store.dispatch(addTask({ description: 'Rent', amount: 109500 }));
-
-const state = store.getState();
-const visibleTasks = getVisibleTasks(state.tasks, state.filters);
-console.log(visibleTasks);
-
 const jsx = (
     <Provider store={store}>
         <AppRouter />
