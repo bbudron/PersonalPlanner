@@ -1,14 +1,7 @@
 import uuid from 'uuid';
 
 // ADD_TASK
-export const addTask = (
-  {
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-  } = {}
-) => ({
+export const addTask = ({description = '', note = '', amount = 0, createdAt = 0} = {}) => ({
   type: 'ADD_TASK',
   task: {
     id: uuid(),

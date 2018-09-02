@@ -3,7 +3,7 @@ import moment from 'moment';
 // Get visible tasks
 
 export default (tasks, { text, sortBy, startDate, endDate }) => {
-  return tasks.filter((task) => {
+  return tasks.filter(task => {
     const createdAtMoment = moment(task.createdAt);
     const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
     const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
@@ -11,10 +11,9 @@ export default (tasks, { text, sortBy, startDate, endDate }) => {
 
     return startDateMatch && endDateMatch && textMatch;
   }).sort((a, b) => {
-    if (sortBy === 'date') {
+    if (sortBy === 'date')
       return a.createdAt < b.createdAt ? 1 : -1;
-    } else if (sortBy === 'amount') {
+    else if (sortBy === 'amount')
       return a.amount < b.amount ? 1 : -1;
-    }
   });
 };

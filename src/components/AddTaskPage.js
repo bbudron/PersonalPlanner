@@ -4,10 +4,12 @@ import TaskForm from './TaskForm';
 import { addTask } from '../actions/tasks';
 
 export class AddTaskPage extends React.Component {
-  onSubmit = (task) => {
+  
+  onSubmit = task => {
     this.props.addTask(task);
     this.props.history.push('/');
   };
+
   render() {
     return (
       <div>
@@ -20,8 +22,8 @@ export class AddTaskPage extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  addTask: (task) => dispatch(addTask(task))
+const mapDispatchToProps = dispatch => ({
+  addTask: task => dispatch(addTask(task))
 });
 
 export default connect(undefined, mapDispatchToProps)(AddTaskPage);
