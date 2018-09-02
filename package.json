@@ -1,6 +1,9 @@
 {
   "name": "personal-planner",
   "version": "1.9.4",
+  "engines": {
+    "node": "8.6.0"
+  },
   "main": "index.js",
   "author": "Brandon Budron",
   "license": "MIT",
