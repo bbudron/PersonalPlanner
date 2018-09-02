@@ -1,0 +1,1 @@
+export default tasks => tasks.map(task => task.amount).reduce((sum, value) => sum + value, 0);
