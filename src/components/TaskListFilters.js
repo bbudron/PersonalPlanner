@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
+import { setTextFilter, sortByUrgent, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 
 export class TaskListFilters extends React.Component {
+
   state = {
     calendarFocused: null
   };
@@ -24,8 +25,8 @@ export class TaskListFilters extends React.Component {
   onSortChange = e => {
     if (e.target.value === 'date')
       this.props.sortByDate();
-    else if (e.target.value === 'amount')
-      this.props.sortByAmount();
+    if (e.target.value === 'urgent')
+      this.props.sortByUrgent();
   };
 
   render() {
@@ -37,11 +38,11 @@ export class TaskListFilters extends React.Component {
           onChange={this.onTextChange}
         />
         <select
-          value={this.props.filters.sortBy}
+          value={this.props.filters.sortByUrgent}
           onChange={this.onSortChange}
         >
           <option value="date">Date</option>
-          <option value="amount">Amount</option>
+          <option value="urgent">Urgent</option>
         </select>
         <DateRangePicker
           startDate={this.props.filters.startDate}
@@ -64,6 +65,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setTextFilter: text => dispatch(setTextFilter(text)),
+  sortByUrgent: () => dispatch(sortByUrgent()),
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: startDate => dispatch(setStartDate(startDate)),

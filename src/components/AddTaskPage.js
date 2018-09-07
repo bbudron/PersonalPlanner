@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskForm from './TaskForm';
-import { addTask } from '../actions/tasks';
+import { startAddTask } from '../actions/tasks';
 
 export class AddTaskPage extends React.Component {
   
   onSubmit = task => {
-    this.props.addTask(task);
+    this.props.startAddTask(task);
     this.props.history.push('/');
   };
 
@@ -23,7 +23,7 @@ export class AddTaskPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addTask: task => dispatch(addTask(task))
+  startAddTask: task => dispatch(startAddTask(task))
 });
 
 export default connect(undefined, mapDispatchToProps)(AddTaskPage);

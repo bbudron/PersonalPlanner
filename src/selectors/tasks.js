@@ -4,16 +4,14 @@ import moment from 'moment';
 
 export default (tasks, { text, sortBy, startDate, endDate }) => {
   return tasks.filter(task => {
-    const createdAtMoment = moment(task.createdAt);
-    const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
-    const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
-    const textMatch = task.description.toLowerCase().includes(text.toLowerCase());
+    const timeMoment = moment(task.time);
+    const startDateMatch = startDate ? startDate.isSameOrBefore(timeMoment, 'day') : true;
+    const endDateMatch = endDate ? endDate.isSameOrAfter(timeMoment, 'day') : true;
+    const textMatch = task.title.toLowerCase().includes(text.toLowerCase());
 
     return startDateMatch && endDateMatch && textMatch;
   }).sort((a, b) => {
-    if (sortBy === 'date')
-      return a.createdAt < b.createdAt ? 1 : -1;
-    else if (sortBy === 'amount')
-      return a.amount < b.amount ? 1 : -1;
+    if (sortBy === 'date') return a.time < b.time ? 1 : -1;
+    if (sortBy === 'urgent') return a.urgent === 'yes' ? -1 : 1;
   });
 };

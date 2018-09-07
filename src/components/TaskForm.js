@@ -1,24 +1,26 @@
 import React from 'react';
-import moment from 'moment';
-import { SingleDatePicker } from 'react-dates';
+import Calendar from 'react-calendar';
 
 export default class TaskForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      description: props.task ? props.task.description : '',
+      title: props.task ? props.task.title : '',
       note: props.task ? props.task.note : '',
-      amount: props.task ? (props.task.amount / 100).toString() : '',
-      createdAt: props.task ? moment(props.task.createdAt) : moment(),
+      time: props.task ? props.task.time : new Date(),
+      duration: props.task ? props.task.duration : '',
+      urgent: props.task ? props.task.urgent : '',
+      color: props.task ? props.task.color : '',
+      category: props.task ? props.task.category : '',
       calendarFocused: false,
       error: ''
     };
-  }
+  };
 
-  onDescriptionChange = e => {
-    const description = e.target.value;
-    this.setState({ description });
+  onTitleChange = e => {
+    const title = e.target.value;
+    this.setState({ title });
   };
 
   onNoteChange = e => {
@@ -26,35 +28,45 @@ export default class TaskForm extends React.Component {
     this.setState({ note });
   };
 
-  onAmountChange = e => {
-    const amount = e.target.value;
+  onCalendarChange = time => {
+    this.setState({ time })}
 
-    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/))
-      this.setState({ amount });
+  onDurationChange = e => {
+    const duration = e.target.value;
+    this.setState({ duration });
   };
 
-  onDateChange = createdAt => {
-    if (createdAt)
-      this.setState({ createdAt });
+  onUrgentChange = e => {
+    const urgent = e.target.value;
+    this.setState({ urgent });
   };
 
-  onFocusChange = ({ focused }) => {
-    this.setState({ calendarFocused: focused });
+  onColorChange = e => {
+    const color = e.target.value;
+    this.setState({ color });
+  };
+
+  onCategoryChange = e => {
+    const category = e.target.value;
+    this.setState({ category });
   };
   
   onSubmit = e => {
     e.preventDefault();
 
-    if (!this.state.description || !this.state.amount)
-      this.setState({ error: 'please provide a description and an amount' });
+    if (!this.state.title)
+      this.setState({ error: 'please provide a title' });
     else {
       this.setState({ error: '' });
 
       this.props.onSubmit({
-        description: this.state.description,
-        amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note
+        title: this.state.title,
+        time: this.state.time,
+        duration: this.state.duration,
+        note: this.state.note,
+        urgent: this.state.urgent,
+        category: this.state.category,
+        color: this.state.color
       });
     }
   };
@@ -66,24 +78,39 @@ export default class TaskForm extends React.Component {
         <form onSubmit={this.onSubmit}>
           <input
             type="text"
-            placeholder="Description"
+            placeholder="Title"
             autoFocus
-            value={this.state.description}
-            onChange={this.onDescriptionChange}
+            value={this.state.title}
+            onChange={this.onTitleChange}
+          />
+          <Calendar
+            onChange={this.onCalendarChange}
+            value={this.state.time}
+            calendarType="US"
           />
           <input
             type="text"
-            placeholder="Amount"
-            value={this.state.amount}
-            onChange={this.onAmountChange}
+            placeholder="Duration"
+            value={this.state.duration}
+            onChange={this.onDurationChange}
           />
-          <SingleDatePicker
-            date={this.state.createdAt}
-            onDateChange={this.onDateChange}
-            focused={this.state.calendarFocused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
+          <input
+            type="text"
+            placeholder="Urgent"
+            value={this.state.urgent}
+            onChange={this.onUrgentChange}
+          />
+          <input
+            type="text"
+            placeholder="Color"
+            value={this.state.color}
+            onChange={this.onColorChange}
+          />
+          <input
+            type="text"
+            placeholder="Category"
+            value={this.state.category}
+            onChange={this.onCategoryChange}
           />
           <textarea
             placeholder="Add a note for your task (optional)"
