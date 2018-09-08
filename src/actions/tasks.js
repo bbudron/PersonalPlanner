@@ -30,6 +30,14 @@ export const removeTask = ({ id } = {}) => ({
   id
 });
 
+export const startRemoveTask = ({id} = {}) => {
+  return dispatch => {
+    return database.ref(`tasks/${id}`).remove().then(() => {
+      dispatch(removeTask({id}));
+    });
+  };
+} ;
+
 // EDIT_TASK
 export const editTask = (id, updates) => ({
   type: 'EDIT_TASK',

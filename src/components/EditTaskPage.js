@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskForm from './TaskForm';
-import { editTask, removeTask } from '../actions/tasks';
+import { editTask, startRemoveTask } from '../actions/tasks';
 
 export class EditTaskPage extends React.Component {
 
@@ -11,7 +11,7 @@ export class EditTaskPage extends React.Component {
   };
 
   onRemove = () => {
-    this.props.removeTask({ id: this.props.task.id });
+    this.props.startRemoveTask({ id: this.props.task.id });
     this.props.history.push('/');
   };
 
@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   editTask: (id, task) => dispatch(editTask(id, task)),
-  removeTask: data => dispatch(removeTask(data))
+  startRemoveTask: data => dispatch(startRemoveTask(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditTaskPage);
