@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addTask } from './actions/tasks';
+import { startSetTasks } from './actions/tasks';
 import { setTextFilter } from './actions/filters';
 import getVisibleTasks from './selectors/tasks';
 import 'normalize.css/normalize.css';
@@ -19,4 +19,9 @@ const app = (
     </Provider>
 );
 
-ReactDOM.render(app, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+store.dispatch(startSetTasks()).then(() => {
+    ReactDOM.render(app, document.getElementById('app'));
+});
+

@@ -13,6 +13,8 @@ export default (state = tasksReducerDefaultState, action) => {
         else
           return task;
       });
+    case 'SET_TASKS':
+      return action.tasks;
     default:
       return state;
   }

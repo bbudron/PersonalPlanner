@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
+
 // ADD_TASK
 export const addTask = task => ({
   type: 'ADD_TASK',
@@ -35,3 +36,26 @@ export const editTask = (id, updates) => ({
   id,
   updates
 });
+
+// SET_TASKS
+export const setTasks = tasks => ({
+  type: 'SET_TASKS',
+  tasks
+});
+
+export const startSetTasks = () => {
+  return dispatch => {
+    return database.ref('tasks').once('value').then(snapshot => {
+      const tasks = [];
+
+      snapshot.forEach(childSnapshot => {
+        tasks.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+
+      dispatch(setTasks(tasks));
+    });
+  };
+};
