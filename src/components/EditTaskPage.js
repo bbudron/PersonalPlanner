@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskForm from './TaskForm';
-import { editTask, startRemoveTask } from '../actions/tasks';
+import { startEditTask, startRemoveTask } from '../actions/tasks';
 
 export class EditTaskPage extends React.Component {
 
   onSubmit = task => {
-    this.props.editTask(this.props.task.id, task);
+    this.props.startEditTask(this.props.task.id, task);
     this.props.history.push('/');
   };
 
@@ -33,7 +33,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-  editTask: (id, task) => dispatch(editTask(id, task)),
+  startEditTask: (id, task) => dispatch(startEditTask(id, task)),
   startRemoveTask: data => dispatch(startRemoveTask(data))
 });
 

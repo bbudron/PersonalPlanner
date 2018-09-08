@@ -45,6 +45,14 @@ export const editTask = (id, updates) => ({
   updates
 });
 
+export const startEditTask = (id, updates) => {
+  return dispatch => {
+    return database.ref(`tasks/${id}`).update(updates).then(() => {
+      dispatch(editTask(id, updates));
+    });
+  };
+} ;
+
 // SET_TASKS
 export const setTasks = tasks => ({
   type: 'SET_TASKS',
