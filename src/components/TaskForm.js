@@ -8,7 +8,7 @@ export default class TaskForm extends React.Component {
     this.state = {
       title: props.task ? props.task.title : '',
       note: props.task ? props.task.note : '',
-      time: props.task ? props.task.time : new Date(),
+      time: props.task ? new Date(this.props.task.date) : new Date(),
       duration: props.task ? props.task.duration : '',
       urgent: props.task ? props.task.urgent : '',
       color: props.task ? props.task.color : '',
@@ -59,9 +59,12 @@ export default class TaskForm extends React.Component {
     else {
       this.setState({ error: '' });
 
+      let date = new Date(this.state.time);
+      date = date.getTime();
+
       this.props.onSubmit({
         title: this.state.title,
-        time: this.state.time,
+        date: date,
         duration: this.state.duration,
         note: this.state.note,
         urgent: this.state.urgent,

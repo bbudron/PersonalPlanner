@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TaskListItem from './TaskListItem';
 import selectTasks from '../selectors/tasks';
 
-export const TaskList = (props) => (
+export const TaskList = props => (
   <div>
     {props.tasks.length === 0 ? (
       <p>No tasks</p>

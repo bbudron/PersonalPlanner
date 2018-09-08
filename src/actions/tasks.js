@@ -9,12 +9,10 @@ export const addTask = task => ({
 
 export const startAddTask = (taskData = {}) => {
   return (dispatch) => {
-    const {title = '', note = '', time = 0, duration = 0, urgent = false, color = '', category = ''} = taskData;
-    
-    let date = new Date(time);
-    date = date.getTime();
+    const {title = '', note = '', date = 0, duration = 0, urgent = false, color = '', category = ''} = taskData;
 
     const task = {title, note, date, duration, urgent, color, category};
+
     database.ref('tasks').push(task).then((ref) => {
       dispatch(addTask({
         id: ref.key,
@@ -46,6 +44,7 @@ export const editTask = (id, updates) => ({
 });
 
 export const startEditTask = (id, updates) => {
+
   return dispatch => {
     return database.ref(`tasks/${id}`).update(updates).then(() => {
       dispatch(editTask(id, updates));
