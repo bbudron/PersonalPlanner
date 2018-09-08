@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
+import { auth } from 'firebase';
 
 // ADD_TASK
 export const addTask = task => ({
@@ -8,12 +9,13 @@ export const addTask = task => ({
 });
 
 export const startAddTask = (taskData = {}) => {
-  return (dispatch) => {
-    const {title = '', note = '', date = 0, duration = 0, urgent = false, color = '', category = ''} = taskData;
+  return (dispatch, getState) => {
 
+    const uid = getState().auth.uid;
+    const {title = '', note = '', date = 0, duration = 0, urgent = false, color = '', category = ''} = taskData;
     const task = {title, note, date, duration, urgent, color, category};
 
-    database.ref('tasks').push(task).then((ref) => {
+    database.ref(`users/${uid}/tasks`).push(task).then((ref) => {
       dispatch(addTask({
         id: ref.key,
         ...task
@@ -29,8 +31,9 @@ export const removeTask = ({ id } = {}) => ({
 });
 
 export const startRemoveTask = ({id} = {}) => {
-  return dispatch => {
-    return database.ref(`tasks/${id}`).remove().then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/tasks/${uid}/`).remove().then(() => {
       dispatch(removeTask({id}));
     });
   };
@@ -45,8 +48,9 @@ export const editTask = (id, updates) => ({
 
 export const startEditTask = (id, updates) => {
 
-  return dispatch => {
-    return database.ref(`tasks/${id}`).update(updates).then(() => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/tasks/${id}`).update(updates).then(() => {
       dispatch(editTask(id, updates));
     });
   };
@@ -59,8 +63,9 @@ export const setTasks = tasks => ({
 });
 
 export const startSetTasks = () => {
-  return dispatch => {
-    return database.ref('tasks').once('value').then(snapshot => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/tasks`).once('value').then(snapshot => {
       const tasks = [];
 
       snapshot.forEach(childSnapshot => {
