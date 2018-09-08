@@ -54,8 +54,8 @@ export default class TaskForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
 
-    if (!this.state.title)
-      this.setState({ error: 'please provide a title' });
+    if (!this.state.title || !this.state.time)
+      this.setState({ error: 'please provide a title and time' });
     else {
       this.setState({ error: '' });
 
