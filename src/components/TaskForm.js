@@ -76,54 +76,60 @@ export default class TaskForm extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            placeholder="Title"
-            autoFocus
-            value={this.state.title}
-            onChange={this.onTitleChange}
-          />
-          <Calendar
-            onChange={this.onCalendarChange}
-            value={this.state.time}
-            calendarType="US"
-          />
-          <input
-            type="text"
-            placeholder="Duration"
-            value={this.state.duration}
-            onChange={this.onDurationChange}
-          />
-          <input
-            type="text"
-            placeholder="Urgent"
-            value={this.state.urgent}
-            onChange={this.onUrgentChange}
-          />
-          <input
-            type="text"
-            placeholder="Color"
-            value={this.state.color}
-            onChange={this.onColorChange}
-          />
-          <input
-            type="text"
-            placeholder="Category"
-            value={this.state.category}
-            onChange={this.onCategoryChange}
-          />
-          <textarea
-            placeholder="Add a note for your task (optional)"
-            value={this.state.note}
-            onChange={this.onNoteChange}
-          >
-          </textarea>
-          <button>Add Task</button>
-        </form>
-      </div>
+      <form className="form" onSubmit={this.onSubmit}>
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <input
+          type="text"
+          placeholder="Title"
+          autoFocus
+          className="text-input"
+          value={this.state.title}
+          onChange={this.onTitleChange}
+        />
+        <Calendar
+          onChange={this.onCalendarChange}
+          value={this.state.time}
+          calendarType="US"
+        />
+        <input
+          type="text"
+          placeholder="Duration"
+          className="text-input"
+          value={this.state.duration}
+          onChange={this.onDurationChange}
+        />
+        <input
+          type="text"
+          placeholder="Urgent"
+          className="text-input"
+          value={this.state.urgent}
+          onChange={this.onUrgentChange}
+        />
+        <input
+          type="text"
+          placeholder="Color"
+          className="text-input"
+          value={this.state.color}
+          onChange={this.onColorChange}
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          className="text-input"
+          value={this.state.category}
+          onChange={this.onCategoryChange}
+        />
+        <textarea
+          placeholder="Add a note for your task (optional)"
+          className="textarea"
+          value={this.state.note}
+          onChange={this.onNoteChange}
+        >
+        </textarea>
+        <div>
+          <button className="button">Add Task</button>
+        </div>
+      </form>
     );
   };
 };

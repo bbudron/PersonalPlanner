@@ -13,10 +13,16 @@ export class AddTaskPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Add Task</h1>
-        <TaskForm
-          onSubmit={this.onSubmit}
-        />
+        <div className="page-header">
+          <div className="content-container">
+            <h1 className="page-header__title">Add Task</h1>
+          </div>
+        </div>
+        <div className="content-container">
+          <TaskForm
+            onSubmit={this.onSubmit}
+          />
+        </div>
       </div>
     );
   }

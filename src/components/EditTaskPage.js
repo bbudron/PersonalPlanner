@@ -18,12 +18,19 @@ export class EditTaskPage extends React.Component {
   render() {
     return (
       <div>
+      <div className="page-header">
+        <div className="content-container">
+          <h1 className="page-header__title">Edit Task</h1>
+        </div>
+      </div>
+      <div className="content-container">
         <TaskForm
           task={this.props.task}
           onSubmit={this.onSubmit}
         />
-        <button onClick={this.onRemove}>Remove</button>
+        <button className="button button--secondary" onClick={this.onRemove}>Remove Task</button>
       </div>
+    </div>
     );
   }
 };
