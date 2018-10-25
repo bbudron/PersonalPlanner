@@ -19,19 +19,36 @@
   border-top: none;
   color: $dark-grey;
   display: flex;
-  flex-direction: column;
-  padding: $s-size;
   text-decoration: none;
   transition: background .3s ease;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $m-size;
   &:hover {
-    background: $off-white;
+    background: $creme;
   }
-  @media (min-width: $desktop-breakpoint) {
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: $m-size;
+  border-style: solid;
+  border-width: 0px 0px 0px 10px;
+}
+
+.list-item--urgent {
+  border: 1px solid darken($off-white, 7%);
+  border-top: none;
+  color: $dark-grey;
+  display: flex;
+  text-decoration: none;
+  transition: background .3s ease;
+  background: $light-red;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: $m-size;
+  &:hover {
+    background: $red;
   }
+  border-style: solid;
+  border-width: 0px 0px 0px 10px;
 }
 
 .list-item--message {

@@ -8,7 +8,7 @@ export const TaskList = props => (
     <div className="list-header">
       <div className="show-for-mobile">Tasks</div>
       <div className="show-for-desktop">Task</div>
-      <div className="show-for-desktop">Amount</div>
+      <div className="show-for-desktop">Completed</div>
     </div>
     <div className="list-body">
       {props.tasks.length === 0 ? (

@@ -4,6 +4,44 @@
   font-size: $font-size-large;
   font-weight: 300;
   padding: $s-size;
+  width: 100%;
+}
+
+.text-input--category {
+  border: 1px solid #cacccd;
+  height: 50px;
+  font-size: $font-size-large;
+  font-weight: 300;
+  padding: $s-size;
+  width: 55%;
+
+  min-width: 175px;
+  @media (min-width: $desktop-breakpoint) {
+    max-width: 100%;
+    min-width: 77%;
+  }
+}
+
+
+.text-input--filters {
+  border: 1px solid #cacccd;
+  height: 50px;
+  font-size: $font-size-large;
+  font-weight: 300;
+  padding: $s-size;
+  width: 336px;
+  @media (min-width: $desktop-breakpoint) {
+    width: 336px;
+  }
+}
+
+.color-input {
+  border: none;
+  height: 50px;
+  font-size: $font-size-large;
+  font-weight: 300;
+  padding: $s-size;
+  min-width: 195px;
 }
 
 .select {
@@ -12,5 +50,10 @@
 
 .textarea {
   @extend .text-input;
-  height: 10rem;
+  height: 8rem;
+  width: 100%;
+}
+
+.singleDatePicker {
+  border: 10px black solid;
 }

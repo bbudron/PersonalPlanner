@@ -32,17 +32,18 @@ export class TaskListFilters extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <div className="input-group">
+        <div className="filters-input-group">
           <div className="input-group__item">
             <input
               type="text"
-              className="text-input"
+              className="text-input--filters"
               placeholder="Search tasks"
               value={this.props.filters.text}
               onChange={this.onTextChange}
             />
           </div>
-          <div className="input-group__item">
+          
+          <div className="input-group__item-none">
             <select
               className="select"
               value={this.props.filters.sortByUrgent}

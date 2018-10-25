@@ -1,18 +1,30 @@
 .header {
-  background: $dark-blue;
+  background: $brown;
+  padding-bottom: 20px;
 }
 
 .header__content {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: $s-size 0;
+  padding: $l-size 0 0;
 }
 
 .header__title {
+  font-family: Josefin Sans, Helvetica, Arial, sans-serif;
   color: white;
   text-decoration: none;
   h1 {
     margin: 0;
   }
+  text-align: center;
+  margin: 0 5px;
+  line-height: 40px;
+}
+
+.header__subcontent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 $s-size;
 }

@@ -38,6 +38,7 @@
     "react": "16.0.0",
     "react-addons-shallow-compare": "15.6.0",
     "react-calendar": "^2.17.2",
+    "react-color": "^2.14.1",
     "react-dates": "12.7.0",
     "react-dom": "16.0.0",
     "react-modal": "2.2.2",

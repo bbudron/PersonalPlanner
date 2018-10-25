@@ -12,8 +12,8 @@ export const startAddTask = (taskData = {}) => {
   return (dispatch, getState) => {
 
     const uid = getState().auth.uid;
-    const {title = '', note = '', date = 0, duration = 0, urgent = false, color = '', category = ''} = taskData;
-    const task = {title, note, date, duration, urgent, color, category};
+    const {title = '', note = '', date = 0, urgent = false, color = '', category = '', completed = false} = taskData;
+    const task = {title, note, date, urgent, color, category, completed};
 
     database.ref(`users/${uid}/tasks`).push(task).then((ref) => {
       dispatch(addTask({
@@ -33,7 +33,7 @@ export const removeTask = ({ id } = {}) => ({
 export const startRemoveTask = ({id} = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/tasks/${uid}/`).remove().then(() => {
+    return database.ref(`users/${uid}/tasks/${id}/`).remove().then(() => {
       dispatch(removeTask({id}));
     });
   };

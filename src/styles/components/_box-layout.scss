@@ -1,6 +1,6 @@
 .box-layout {
     align-items: center;
-    background: linear-gradient($blue, $dark-blue);
+    background: $off-white;
     background-size: cover;
     display: flex;
     height: 100vh;
@@ -10,10 +10,11 @@
 
 .box-layout__box {
     background: fade-out(white, .15);
-    border-radius: 3px;
+    border-radius: 7px;
     padding: $l-size $m-size;
     text-align: center;
     width: 25rem;
+    height: 250px;
 }
 
 .box-layout__title {
